@@ -3,13 +3,13 @@ import { List } from "../../shared/components/list/list";
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-list-actived',
+  selector: 'app-list-active',
   imports: [List],
-  templateUrl: './list-actived.html',
-  styleUrl: './list-actived.scss',
+  templateUrl: './list-active.html',
+  styleUrl: './list-active.scss',
 })
-export class ListActived {
+export class ListActive {
   private route = inject(ActivatedRoute)
 
-  mode = this.route.snapshot.data['mode'] ?? 'actived'
+  mode = this.route.snapshot.data['mode'] ?? 'active'
 }

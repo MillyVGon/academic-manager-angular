@@ -1,15 +1,15 @@
 import { Routes } from '@angular/router';
 import { GetProject } from './shared/resolvers/get-project';
 import { GetProjects } from './shared/resolvers/get-projects';
-import { ListActived } from './features/list-actived/list-actived';
+import { ListActive } from './features/list-active/list-active';
 import { ListExpired } from './features/list-expired/list-expired';
 
 export const routes: Routes = [
     {
         path: '',
-        data: { mode: 'actived' },
+        data: { mode: 'active' },
         resolve: { projects: GetProjects },
-        component: ListActived
+        component: ListActive
     },
     {
         path: 'expirados',

@@ -88,9 +88,9 @@ export class Form {
   }
 
   private readonly _currentYear = new Date().getFullYear()
-  private readonly _currentMouth = new Date().getMonth()
+  private readonly _currentMonth = new Date().getMonth()
   private readonly _currentDay = new Date().getDate()
-  readonly minDate = new Date(this._currentYear, this._currentMouth, this._currentDay + 1)
+  readonly minDate = new Date(this._currentYear, this._currentMonth, this._currentDay + 1)
 
   onSubmit() {
     if (this.form.invalid) {

@@ -49,7 +49,7 @@ export class List {
       })
   })
 
-  mode = input.required<'actived' | 'expired'>()
+  mode = input.required<'active' | 'expired'>()
 
   onEdit(project: Project) {
     this.router.navigate(['/editar-projeto', project.id])
@@ -134,7 +134,7 @@ export class List {
 
     return [...projects]
       .map(proj => ({ ...proj, datetime: new Date(proj.datetime) }))
-      .filter(proj => this.mode() === 'actived'
+      .filter(proj => this.mode() === 'active'
         ? !this.isExpired(proj)
         : this.isExpired(proj)
       )
