@@ -4,11 +4,19 @@
   </div>
 
   <div class="list-content-container">
-    @for (project of projects(); track project.id) {
-      @defer (on immediate) {
-        <app-card app-card [project]="project" (edit)="onEdit(project)" (delete)="onDelete(project)" (done)="onDone(project)"
-          (reopen)="onReopen(project)">
-        </app-card>
+    @for (group of groupedProjects(); track group.dateKey) {
+      <app-date-projects [group]="group"></app-date-projects>
+
+      @for (project of group.projects; track project.id) {
+        @defer (on immediate) {
+          <app-card 
+            [project]="project" 
+            (edit)="onEdit(project)" 
+            (delete)="onDelete(project)" 
+            (done)="onDone(project)"
+            (reopen)="onReopen(project)"
+          ></app-card>
+        }
       }
     }
     @empty {

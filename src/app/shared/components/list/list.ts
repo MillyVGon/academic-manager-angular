@@ -10,13 +10,16 @@ import { ConfirmationDialogService } from '../../services/confirmation-dialog.se
 import { ProjectsService } from '../../services/projects.service';
 import { Project } from '../../interfaces/project.interface';
 import { SNACK_BAR_CONFIG } from '../../../app.config';
+import { ProjectGroup } from '../../interfaces/project-group.interface';
+import { DateProjects } from "./components/date-projects/date-projects";
 
 @Component({
   selector: 'app-list',
-  imports: [Card, NoProjects, RouterLink, MatButtonModule, BackList],
+  imports: [Card, NoProjects, RouterLink, MatButtonModule, BackList, DateProjects],
   templateUrl: './list.html',
   styleUrl: './list.scss',
 })
+
 export class List {
   private projectsService = inject(ProjectsService)
   private router = inject(Router)
@@ -25,7 +28,26 @@ export class List {
   private route = inject(ActivatedRoute)
 
   private rawProjects = signal<Project[]>(this.route.snapshot.data['projects'] ?? [])
-  projects = computed(() => this.processProject(this.rawProjects()))
+  
+  groupedProjects = computed<ProjectGroup[]>(() => {
+    const projects = this.processProject(this.rawProjects())
+    const groups = new Map<string, Project[]>()
+
+    for (const project of projects) {
+      const key = this.getDateKey(project.datetime)
+
+      if (!groups.has(key)) groups.set(key, [])
+
+      groups.get(key)!.push(project)
+    }
+    return Array.from(groups.entries())
+      .sort(([a], [b]) => a.localeCompare(b))
+      .map(([key, projects]) => {
+        const [year, month, day] = key.split('-').map(Number)
+        const date = new Date(year, month - 1, day)
+        return { dateKey: key, dateLabel: this.formatDateLabel(date), projects }
+      })
+  })
 
   mode = input.required<'actived' | 'expired'>()
 
@@ -58,6 +80,27 @@ export class List {
       'Projeto Retomado com Sucesso!!!',
       () => this.projectsService.put(project.id, { ...project, done: false }),
     )
+  }
+
+  private getDateKey(date: Date): string {
+    const _currentYear = date.getFullYear()
+    const _currentMonth = String(date.getMonth() + 1).padStart(2, '0')
+    const _currentDate = String(date.getDate()).padStart(2, '0')
+
+    return `${_currentYear}-${_currentMonth}-${_currentDate}`
+  }
+
+  private formatDateLabel(date: Date): string {
+    const _dateFormatted = date.toLocaleDateString('pt-BR', {
+      weekday: 'long',
+      day: '2-digit',
+      month: 'short',
+    })
+
+    return _dateFormatted
+      .split(' ')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ')
   }
 
   private confirmAction(
