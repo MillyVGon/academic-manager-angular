@@ -1,0 +1,17 @@
+.form-container {
+    display: flex;
+    justify-content: center;
+}
+
+.form-content-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 450px;
+}
+
+.datetime-container {
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+}

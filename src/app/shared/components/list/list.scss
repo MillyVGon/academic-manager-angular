@@ -1,0 +1,25 @@
+.list-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.list-content-container {
+    max-height: calc(100vh - 185px);
+    overflow-y: auto;
+    padding-right: 8px;
+}
+
+.list-button-container {
+    display: flex;
+    justify-content: end;
+}
+
+.list-button-top {
+    width: 175px;
+}
+
+.list-button-bottom {
+    display: flex;
+    justify-content: flex-start;
+}

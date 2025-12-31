@@ -1,0 +1,11 @@
+.back-list-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5px;
+}
+
+.back-list-content-container {
+    justify-content: flex-start;
+    width: 100%;
+    max-width: 450px;
+}

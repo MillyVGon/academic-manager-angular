@@ -1,0 +1,45 @@
+<form class="form-container" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-content-container">
+        <mat-form-field>
+            <mat-label>Título do Projeto</mat-label>
+            <input matInput type="text" formControlName="title">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Disciplina do Projeto</mat-label>
+            <input matInput type="text" formControlName="discipline">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Prioridade do Projeto</mat-label>
+            <mat-select formControlName="priority">
+                <mat-option value="low">Baixa</mat-option>
+                <mat-option value="medium">Média</mat-option>
+                <mat-option value="high">Alta</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <div class="datetime-container">
+            <mat-form-field>
+                <mat-label>Data de Entrega</mat-label>
+                <input matInput formControlName="date" [min]="minDate" [matDatepicker]="picker" />
+                <mat-datepicker #picker></mat-datepicker>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Horário da Entrega</mat-label>
+                <input matInput formControlName="time" [matTimepicker]="timepicker">
+                <mat-timepicker #timepicker />
+                <mat-timepicker-toggle matSuffix [for]="timepicker"></mat-timepicker-toggle>
+            </mat-form-field>
+        </div>
+
+        <mat-form-field>
+            <mat-label>Descrição do Projeto</mat-label>
+            <textarea matInput formControlName="description"></textarea>
+        </mat-form-field>
+
+        <button mat-flat-button type="submit">Salvar</button>
+    </div>
+</form>

@@ -1,0 +1,28 @@
+<div class="list-container">
+  <div class="list-button-container">
+    <a matButton="filled" class="list-button-top" [routerLink]="['/criar-projeto']">Criar Projeto</a>
+  </div>
+
+  <div class="list-content-container">
+    @for (project of projects(); track project.id) {
+      @defer (on immediate) {
+        <app-card app-card [project]="project" (edit)="onEdit(project)" (delete)="onDelete(project)" (done)="onDone(project)"
+          (reopen)="onReopen(project)">
+        </app-card>
+      }
+    }
+    @empty {
+      @defer (on immediate) {
+        <app-no-projects></app-no-projects>
+      }
+    }
+  </div>
+
+  <div class="list-button-bottom">
+    @if (mode() === 'actived') {
+      <a matButton [routerLink]="['/expirados']">Ver projetos expirados</a>
+    } @else {
+      <app-back-list></app-back-list>
+    }
+  </div>
+</div>
