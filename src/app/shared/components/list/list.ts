@@ -1,11 +1,10 @@
-import { Component, computed, inject, input, Input, signal } from '@angular/core';
+import { Component, computed, inject, input, signal } from '@angular/core';
 import { Card } from './components/card/card';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { filter, map, Observable, switchMap, tap } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { NoProjects } from './components/no-projects/no-projects';
 import { MatButtonModule } from '@angular/material/button';
-import { BackList } from '../back-list/back-list';
 import { ConfirmationDialogService } from '../../services/confirmation-dialog.service';
 import { ProjectsService } from '../../services/projects.service';
 import { Project } from '../../interfaces/project.interface';
@@ -15,7 +14,7 @@ import { DateProjects } from "./components/date-projects/date-projects";
 
 @Component({
   selector: 'app-list',
-  imports: [Card, NoProjects, RouterLink, MatButtonModule, BackList, DateProjects],
+  imports: [Card, NoProjects, RouterLink, MatButtonModule, DateProjects],
   templateUrl: './list.html',
   styleUrl: './list.scss',
 })

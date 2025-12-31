@@ -2,12 +2,7 @@
     display: flex;
     flex-direction: column;
     gap: 8px;
-}
-
-.list-content-container {
-    max-height: calc(100vh - 185px);
-    overflow-y: auto;
-    padding-right: 8px;
+    margin-bottom: 8px;
 }
 
 .list-button-container {
@@ -19,7 +14,8 @@
     width: 175px;
 }
 
-.list-button-bottom {
-    display: flex;
-    justify-content: flex-start;
+.list-content-container {
+    max-height: calc(100vh - 190px);
+    overflow-y: auto;
+    padding-right: 8px;
 }

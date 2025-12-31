@@ -1,10 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { List } from "../../shared/components/list/list";
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-list-active',
-  imports: [List],
+  imports: [MatButtonModule, List, RouterLink],
   templateUrl: './list-active.html',
   styleUrl: './list-active.scss',
 })
